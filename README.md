@@ -1,2 +1,29 @@
-# pokemon-graphql-rust
-A high-performance GraphQL service built with Rust, Tokio, and Warp. This service fetches Pokémon data from the Pokémon API and serves it via a GraphQL endpoint. It leverages Tokio for async execution, Warp for HTTP handling, and Reqwest with connection pooling for efficient API calls.
+# Pokémon GraphQL API (Rust)
+
+## Overview
+This is a **high-performance GraphQL API** built with **Rust, Warp, and Async-GraphQL**.  
+It fetches data from the [Pokémon API](https://pokeapi.co/) and serves it as a **GraphQL service**.
+
+## Features
+- 🚀 **Asynchronous & High Throughput** (Uses **Tokio** for concurrency)
+- ⚡ **GraphQL API** with `async-graphql`
+- 🌍 **Fetches Pokémon Data** from an external REST API
+- ♻️ **Uses Connection Pooling** with Reqwest for efficiency
+- 📡 **Fast & Scalable** with Warp
+
+## Tech Stack
+- **Rust** 🦀
+- **Tokio** (Async Runtime)
+- **Warp** (Web Framework)
+- **Async-GraphQL** (GraphQL Library)
+- **Reqwest** (HTTP Client)
+- **Serde** (JSON Serialization)
+
+## Run Locally
+```sh
+# Clone the repository
+git clone <YOUR_GITHUB_REPO_URL>
+cd pokemon-graphql-rust
+
+# Run the server
+cargo run
