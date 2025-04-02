@@ -22,7 +22,7 @@ It fetches data from the [Pokémon API](https://pokeapi.co/) and serves it as a 
 ## Run Locally
 ```sh
 # Clone the repository
-git clone <YOUR_GITHUB_REPO_URL>
+git clone https://github.com/vickky06/pokemon-graphql-rust.git
 cd pokemon-graphql-rust
 
 # Run the server
