@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use async_graphql::SimpleObject;
+use serde::{Deserialize, Serialize};
 #[derive(Serialize, Deserialize, Debug, SimpleObject)]
 pub struct EvolutionFlow {
     pub baby_trigger_item: Option<serde_json::Value>, // Can be null or an object
@@ -22,14 +22,14 @@ pub struct EvolutionDetail {
     pub item: Option<Item>,
     pub known_move: Option<serde_json::Value>, // Placeholder for unknown structure
     pub known_move_type: Option<serde_json::Value>, // Placeholder for unknown structure
-    pub location: Option<serde_json::Value>, // Placeholder for unknown structure
+    pub location: Option<serde_json::Value>,   // Placeholder for unknown structure
     pub min_affection: Option<u8>,
     pub min_beauty: Option<u8>,
     pub min_happiness: Option<u8>,
     pub min_level: Option<u8>,
     pub needs_overworld_rain: bool,
     pub party_species: Option<serde_json::Value>, // Placeholder for unknown structure
-    pub party_type: Option<serde_json::Value>, // Placeholder for unknown structure
+    pub party_type: Option<serde_json::Value>,    // Placeholder for unknown structure
     pub relative_physical_stats: Option<i8>,
     pub time_of_day: String,
     pub trade_species: Option<serde_json::Value>, // Placeholder for unknown structure
@@ -43,13 +43,13 @@ pub struct Item {
     pub url: String,
 }
 
-#[derive(Serialize, Deserialize, Debug,SimpleObject)]
+#[derive(Serialize, Deserialize, Debug, SimpleObject)]
 pub struct Trigger {
     pub name: String,
     pub url: String,
 }
 
-#[derive(Serialize, Deserialize, Debug,SimpleObject)]
+#[derive(Serialize, Deserialize, Debug, SimpleObject)]
 pub struct Species {
     pub name: String,
     pub url: String,

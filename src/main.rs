@@ -3,9 +3,9 @@ use crate::model::query_root::QueryRoot;
 use crate::routes::graphql::{graphql_handler, graphql_playground};
 use async_graphql::{EmptyMutation, EmptySubscription, Schema};
 use axum::{extract::Extension, routing::get, Router};
-// use external::config_loader::{load_config};
 use reqwest::Client;
-use std::{net::SocketAddr, sync::Arc};
+use std::sync::Arc;
+use std::net::SocketAddr;
 
 mod external;
 mod model;
@@ -15,11 +15,12 @@ mod routes;
 async fn main() {
     let client = Arc::new(Client::new());
     let pokemon_service = Arc::new(PokemonService { client });
-    let schema = Schema::build(QueryRoot, EmptyMutation, EmptySubscription).finish();
+    let schema: Schema<QueryRoot, EmptyMutation, EmptySubscription> = Schema::build(QueryRoot, EmptyMutation, EmptySubscription)
+    .data(pokemon_service.clone()) // Add PokemonService
+    .finish();
     let app = Router::new()
         .route("/", get(PokemonService::check_handler))
         .route("/graphql", get(graphql_playground).post(graphql_handler))
-        // .route("/check",get(PokemonService::check_handler()))
         .route(
             "/debug/fetch_pokemon",
             get(PokemonService::fetch_pokemon_handler),
@@ -28,12 +29,8 @@ async fn main() {
             "/debug/fetch_evolution",
             get(PokemonService::fetch_evolution_handler),
         )
-        // .route(
-        //     "/debug/{*endpoint}",
-        //     get(PokemonService::get_pokemon_handler),
-        // ) // TODO : convert this to internal endpoint
-        .layer(Extension(schema))
-        .layer(Extension(pokemon_service));
+        .layer(Extension(schema));
+        // .layer(Extension(pokemon_service.clone()));
     let addr = SocketAddr::from(([127, 0, 0, 1], 8000));
 
     axum_server::bind(addr)

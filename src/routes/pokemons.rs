@@ -24,12 +24,12 @@ impl Default for Pokemon {
 }
 
 impl Pokemon {
-    pub async fn pokemon() -> Self {
+    pub fn no_pokemon() -> Self {
         let pokemon = Pokemon {
-            name: "Pikachu".to_string(),
-            height: 4,
-            weight: 60,
-            base_experience: 112,
+            name: "NO POKEMON FOUND".to_string(),
+            height: 0,
+            weight: 0,
+            base_experience: 0,
             ..Default::default()
         };
         pokemon
