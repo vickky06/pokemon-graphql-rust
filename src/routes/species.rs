@@ -28,9 +28,7 @@ impl Default for EvolutionSpecies {
         Self {
             name: String::new(),
             flavor_text_entries: Vec::new(),
-            evolution_chain: EvolutionChain {
-                url: String::new(),
-            },
+            evolution_chain: EvolutionChain { url: String::new() },
         }
     }
 }
