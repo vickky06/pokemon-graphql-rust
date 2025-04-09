@@ -29,8 +29,8 @@ async fn main() {
             "/debug/fetch_evolution",
             get(PokemonService::fetch_evolution_handler),
         )
-        .layer(Extension(schema));
-        // .layer(Extension(pokemon_service.clone()));
+        .layer(Extension(schema))
+        .layer(Extension(pokemon_service.clone()));
     let addr = SocketAddr::from(([127, 0, 0, 1], 8000));
 
     axum_server::bind(addr)
