@@ -1,0 +1,6 @@
+# config.toml
+[api.pokemon_api]
+base_uri = "https://pokeapi.co/api/v2"
+pokemon_endpoint = "pokemon"
+evolution_endpoint = "evolution-chain"
+pokemon_species = "pokemon-species"
