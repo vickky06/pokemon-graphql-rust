@@ -1,13 +1,12 @@
 use super::config_loader::{load_config, AppConfig};
-use axum::http::response;
 use reqwest::{Client, Response};
 // use serde_json;
-use std::{collections::HashMap, fmt::format, sync::Arc};
+use std::{collections::HashMap, sync::Arc};
 // use warp::reply::Json;
 
 pub enum CallType {
     GET,
-    POST,
+    // POST,
 }
 
 struct EndpointType {
@@ -58,19 +57,26 @@ pub async fn call_api(
         ("fetch_evolution_chain", CallType::GET) => {
             endpoint_loader.get_pokemon_endpoint(endpoint_name)
         }
-        _ => endpoint_loader.get_pokemon_endpoint(' '.to_string().as_str()),
+        _ => {
+            // endpoint is url
+            endpoint_name.to_string()
+        }
     };
     match call_type {
         CallType::GET => {
             endpoint.push_str("/");
-            endpoint.push_str(&args["GET"]);
+            // endpoint.push_str(&args["GET"]);
             // println!("{}: -<", endpoint);
+            match args.get("GET") {
+                Some(value) => {
+                    endpoint.push_str(value);
+                }
+                None => {}
+            }
             response = client.get(&endpoint).send().await?;
-
-        }
-        CallType::POST => {
-            unimplemented!()
-        }
+        } // CallType::POST => {
+          //     unimplemented!()
+          // }
     }
     // println!("{:?}",response);
     Ok(response)
