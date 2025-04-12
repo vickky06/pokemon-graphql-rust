@@ -34,7 +34,10 @@ impl Default for EvolutionSpecies {
 }
 
 impl EvolutionSpecies {
-    pub async fn evolution_flow() -> Self {
+    pub fn no_pokemon() -> EvolutionSpecies {
+        return Self::evolution_flow();
+    }
+    pub fn evolution_flow() -> Self {
         let evo_species = EvolutionSpecies::default();
         evo_species
     }

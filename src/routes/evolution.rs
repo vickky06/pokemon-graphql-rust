@@ -1,13 +1,14 @@
 use async_graphql::SimpleObject;
 use serde::{Deserialize, Serialize};
-#[derive(Serialize, Deserialize, Debug, SimpleObject)]
+#[derive(Serialize, Deserialize, Debug, SimpleObject, Clone)]
 pub struct EvolutionFlow {
     pub baby_trigger_item: Option<serde_json::Value>, // Can be null or an object
     pub chain: Chain,
     pub id: u32,
+    pub evolution_matrix : Option<Vec<Vec<String>>>, // Placeholder for unknown structure that needs to be manually generated
 }
 
-#[derive(Serialize, Deserialize, Debug, SimpleObject)]
+#[derive(Serialize, Deserialize, Debug, SimpleObject,Clone)]
 pub struct Chain {
     pub evolution_details: Vec<EvolutionDetail>,
     pub evolves_to: Vec<Chain>,
@@ -15,7 +16,7 @@ pub struct Chain {
     pub species: Species,
 }
 
-#[derive(Serialize, Deserialize, Debug, SimpleObject)]
+#[derive(Serialize, Deserialize, Debug, SimpleObject,Clone)]
 pub struct EvolutionDetail {
     pub gender: Option<u8>,
     pub held_item: Option<Item>,
@@ -37,26 +38,26 @@ pub struct EvolutionDetail {
     pub turn_upside_down: bool,
 }
 
-#[derive(Serialize, Deserialize, Debug, SimpleObject)]
+#[derive(Serialize, Deserialize, Debug, SimpleObject,Clone)]
 pub struct Item {
     pub name: String,
     pub url: String,
 }
 
-#[derive(Serialize, Deserialize, Debug, SimpleObject)]
+#[derive(Serialize, Deserialize, Debug, SimpleObject,Clone)]
 pub struct Trigger {
     pub name: String,
     pub url: String,
 }
 
-#[derive(Serialize, Deserialize, Debug, SimpleObject)]
+#[derive(Serialize, Deserialize, Debug, SimpleObject, Clone)]
 pub struct Species {
     pub name: String,
     pub url: String,
 }
 
 impl EvolutionFlow {
-    pub async fn evolution_details() -> Self {
+    pub fn no_evolution_details() -> Self {
         let evo = EvolutionFlow::default();
         evo
     }
@@ -65,6 +66,7 @@ impl EvolutionFlow {
             baby_trigger_item: None,
             chain: Chain::default(),
             id: 0,
+            evolution_matrix: None, // Placeholder for unknown structure
         }
     }
 }
