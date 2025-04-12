@@ -8,9 +8,3 @@ use serde::Deserialize;
 pub struct Health {
     pub is_healthy: bool,
 }
-
-// impl Health {
-//     pub fn new(is_healthy: bool) -> Self {
-//         Health { is_healthy: true }
-//     }
-// }
