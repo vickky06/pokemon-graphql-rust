@@ -27,3 +27,4 @@ cd pokemon-graphql-rust
 
 # Run the server
 cargo run
+
