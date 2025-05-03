@@ -1,20 +1,4 @@
-// use serde::Deserialize;
 use crate::routes::evolution::Chain;
-// #[derive(Debug, Deserialize)]
-// struct EvolutionChainWrapper {
-//     chain: Chain,
-// }
-
-// #[derive(Debug, Deserialize)]
-// struct Chain {
-//     species: Species,
-//     evolves_to: Vec<Chain>,
-// }
-
-// #[derive(Debug, Deserialize)]
-// struct Species {
-//     name: String,
-// }
 
 pub fn flatten_evolution_chain_iterative(chain: Chain) -> Vec<Vec<String>> {
     let mut result = Vec::new();
